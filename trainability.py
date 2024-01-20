@@ -119,7 +119,7 @@ if __name__ == "__main__":
             iteration+=1
 
     f = open(os.path.join(args.output_dir, fileid+'.json'), 'w')
-    json.dump(f)
+    json.dump(metrics, f)
     f.close()
 
 
