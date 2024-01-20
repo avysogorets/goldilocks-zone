@@ -1,0 +1,7 @@
+pytorch==1.9.0
+torchvision==0.10.0
+scipy==1.5.4
+numpy==1.19.5
+tqdm==4.64.1
+matplotlib==3.3.4
+pytorch-hessian-eigenthings @ git+https://github.com/noahgolmant/pytorch-hessian-eigenthings.git
