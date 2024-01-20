@@ -1,8 +1,8 @@
 from torch.utils.data import DataLoader
 from linalg import eigenthings, cos_vec_vec
 from data import DataFactory
-from models import ModelFactory, \
-    get_layer_idxs, \
+from models import ModelFactory
+from models.utils import get_layer_idxs, \
     get_trainable_parameters, \
     set_trainable_parameters, \
     get_current_gradients
