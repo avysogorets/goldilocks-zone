@@ -37,7 +37,7 @@ def get_fileid(args):
             f"{args.dataset}_"
             f"{args.activation}_"
             f"{args.scale}_"
-            f"{args.epochs}_"
+            f"{args.num_epochs}_"
             f"{args.lr}_")
     return fileid
 
