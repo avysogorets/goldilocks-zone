@@ -67,6 +67,7 @@ if __name__ == "__main__":
             num_classes=data.num_classes,
             dtype=dtype,
             device=device)
+    print(model.device)
     model.to(dtype)
     metrics = {
         "train-accs": [],
@@ -88,6 +89,7 @@ if __name__ == "__main__":
     iteration = 0
     while iteration < args.num_epochs:
         for X,y in dataloader:
+            print(model.device)
             optimizer.zero_grad()
             model.zero_grad()
             outs = model(X)
@@ -102,7 +104,6 @@ if __name__ == "__main__":
                 _, acc = compute_loss_acc(data.datasets["dev"], model)
                 metrics["test-accs"].append(acc)
                 print(f'[epoch: {iteration}][train / test acc: {train_acc:.4f}/{acc:.4f}]')
-                print(model)
                 L,_ = eigenthings(
                         model=model,
                         loss=F.cross_entropy,
