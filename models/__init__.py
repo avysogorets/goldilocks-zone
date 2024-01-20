@@ -3,7 +3,6 @@ from models.model_base import ClassificationModelBase
 from models.lenet300100 import LeNet300100
 from models.lenet5 import LeNet5
 from models.demo import Demo
-from models.utils import *
 
 
 def ModelFactory(model_name, **kwargs):
