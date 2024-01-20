@@ -21,7 +21,7 @@ def parse_args():
     parser.add_argument('--lr', type=float, default=0, help='base learning rate eta_0')
     parser.add_argument('--num_epochs', type=int, default=5000, help='number of epochs')  
     parser.add_argument('--log_every_k', type=int, default=100, help='log iterations')   
-    parser.add_argument('--path', type=int, default='downloads', help='path to data directory')
+    parser.add_argument('--path', type=str, default='downloads', help='path to data directory')
     parser.add_argument('--output_dir', type=str, default='results', help='output directory')
     parser.add_argument('--scale', type=float, default=0, help='initialization scale (alpha)')
     parser.add_argument('--activation', type=str, default='ReLU', help='activation function (ReLU / Tanh / Sigmoid / Identity)')
