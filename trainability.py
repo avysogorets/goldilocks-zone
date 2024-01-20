@@ -17,7 +17,7 @@ import json
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--seed', type=int, default=0, help='global seed')
-    parser.add_argument('--is_double', type=bool, action="store_true", default=False, help='use float64 as data type')
+    parser.add_argument('--is_double', action="store_true", default=False, help='use float64 as data type')
     parser.add_argument('--lr', type=float, default=0, help='base learning rate eta_0')
     parser.add_argument('--num_epochs', type=int, default=5000, help='number of epochs')  
     parser.add_argument('--log_every_k', type=int, default=100, help='log iterations')   
