@@ -1,4 +1,3 @@
-from tqdm.auto import tqdm
 from typing import Union
 from torch.utils.data import Dataset, DataLoader
 from models.model_base import ClassificationModelBase
@@ -54,7 +53,7 @@ def sparse_vector(
             D: int,
             n: int) -> torch.Tensor:
     
-    """ Computes a D dimensional sparse vctors with n non-zero entries.
+    """ Computes a D dimensional sparse vectors with n non-zero entries.
         Adapted from https://github.com/jeffiar/cs229-final-project
     """
     vec = torch.zeros(D).float()
@@ -105,7 +104,7 @@ def eigenvvs(
             R: Union[torch.Tensor, None] = None,
             layer: Union[int, None] = None) -> (torch.Tensor, torch.Tensor):
     
-    """ Computes top_k eiegnvalues and eigenvectors of the model
+    """ Computes top_k eigenvalues and eigenvectors of the model
         on train_dataset (top_k = -1 means all).
          - is_subspace: use a subspace specified by R
          - R (P, d): column vectors spanning the subsapce
@@ -140,7 +139,7 @@ def hessian(
          - layer: compute the Hessian for a specified tensor layer.
     
         Warning: this function invokes flip_parameters_to_tensors,
-        which removes all parameters from the model; hence,it can
+        which removes all parameters from the model; hence, it can
         be called only once. After invoking this function, it is
         impossible to retrieve gradients with respect to model's
         parameters as they are no longer leaf tensors. Likewise,
@@ -259,7 +258,7 @@ def get_Jacobian(
         - K: number of classes;
         - R (P, d): subspace (if any).
         Returns:
-        - J (S, K, d): Jacobian with respect to damples in dataset.
+        - J (S, K, d): Jacobian with respect to samples in dataset.
     """
     w = get_trainable_parameters(model)
     d = w.numel() if R is None else R.shape[1]
@@ -305,8 +304,8 @@ def EG_curvature(
     """ Computes positive curvature of the exected G_term per Eq. 9.
         - var_E: estimated variance of logit gradients
         - var_C: estimated variance of logit gradient means
-        -d: dimension of the subspace
-        -P (S, K): matrix of softmax outputs. 
+        - d: dimension of the subspace
+        - P (S, K): matrix of softmax outputs. 
     """
     gamma = Gamma(P)
     if gamma >= 0 and gamma < 1:

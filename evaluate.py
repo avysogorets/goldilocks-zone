@@ -41,7 +41,7 @@ def get_entropy(
             model: ClassificationModelBase,
             dataset: Dataset) -> torch.Tensor:
 
-    """ Computes prediciton entropy for each sample in dataset.
+    """ Computes prediction entropy for each sample in dataset.
     """
     model.eval()
     entropies = []

@@ -32,7 +32,7 @@ def WCA(
             gs: torch.Tensor,
             ys: Iterable[int]) -> float:
     
-    """ Computes withing class alignment of logit gradients.
+    """ Computes within class alignment of logit gradients.
         Inspired by Fort & Ganguli (2019): https://arxiv.org/abs/1910.05929 
         - gs (K, S, P): a matrix of logit gradients
         - ys: (S): a vector of labels s.t. gs[k][s] corr. to ys[s] for all s, k.
@@ -70,11 +70,3 @@ def CCA(
                     angle = cos_vec_vec(gs[k][idx_1], gs[k][idx_2])
                     tot_angle += angle/coeff              
     return tot_angle
-
-
-def get_all_subclasses(cls):
-    all_subclasses = []
-    for subclass in cls.__subclasses__():
-        all_subclasses.append(subclass)
-        all_subclasses.extend(get_all_subclasses(subclass))
-    return all_subclasses

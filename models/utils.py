@@ -39,7 +39,7 @@ def flip_parameters_to_tensors(
             model: ClassificationModelBase) -> None:
     
     """ Removes all parameters from the model and substitutes
-        them for tensors. Can be called on the same model once.
+        them for tensors. Cannot be called on the same model once.
     """
     parameters = get_trainable_parameters(model)
     for module in model.modules():
@@ -230,3 +230,11 @@ def get_layer_idxs(model):
             e_idx = s_idx + count
             idxs.append((s_idx, e_idx))
     return idxs[1:]
+
+
+def get_all_subclasses(cls):
+    all_subclasses = []
+    for subclass in cls.__subclasses__():
+        all_subclasses.append(subclass)
+        all_subclasses.extend(get_all_subclasses(subclass))
+    return all_subclasses

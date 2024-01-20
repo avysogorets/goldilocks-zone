@@ -1,4 +1,4 @@
-from misc import get_all_subclasses
+from models.utils import get_all_subclasses
 from models.model_base import ClassificationModelBase
 from models.lenet300100 import LeNet300100
 from models.lenet5 import LeNet5
