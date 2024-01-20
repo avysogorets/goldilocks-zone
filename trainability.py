@@ -102,6 +102,7 @@ if __name__ == "__main__":
                 _, acc = compute_loss_acc(data.datasets["dev"], model)
                 metrics["test-accs"].append(acc)
                 print(f'[epoch: {iteration}][train / test acc: {train_acc:.4f}/{acc:.4f}]')
+                print(model)
                 L,_ = eigenthings(
                         model=model,
                         loss=F.cross_entropy,
