@@ -1,4 +1,4 @@
-from misc import get_all_subclasses
+from data.utils import get_all_subclasses
 from data.data_base import ClassificationDataBase
 from data.fmnist import FMNIST
 from data.cifar10 import CIFAR10
