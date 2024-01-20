@@ -79,7 +79,7 @@ if __name__ == "__main__":
         "zero-logits": [],
         "sharpness": []}
     num_layers = len(get_layer_idxs(model))
-    init = get_trainable_parameters(model).clone()
+    init = get_trainable_parameters(model).clone().squeeze()
     set_trainable_parameters(model, (args.scale*init).to(dtype))
     optimizer = torch.optim.SGD(
             model.parameters(),
