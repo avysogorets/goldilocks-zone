@@ -97,7 +97,7 @@ if __name__ == "__main__":
             optimizer.step()
             if iteration % args.log_every_k == 0:
                 y_pred = outs.detach().argmax(dim=-1)
-                train_acc = torch.mean(y_pred==y).item()
+                train_acc = torch.mean((y_pred==y).float()).item()
                 metrics["train-accs"].append(train_acc)
                 _, acc = compute_loss_acc(data.datasets["dev"], model)
                 metrics["test-accs"].append(acc)
