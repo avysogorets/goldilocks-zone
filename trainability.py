@@ -115,7 +115,7 @@ if __name__ == "__main__":
                 metrics["angles-wg"].append(cos_vec_vec(w, g))
                 metrics["angles-ww"].append(cos_vec_vec(w, init))
                 zero_logits = torch.sum(outs==0)/outs.numel()
-                metrics["zero-logits"]((zero_logits).item())
+                metrics["zero-logits"](zero_logits.item())
             iteration+=1
 
     f = open(os.path.join(args.output_dir, fileid+'.json'), 'w')
