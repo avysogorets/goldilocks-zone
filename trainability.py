@@ -48,6 +48,7 @@ def get_device():
     else:
         device = torch.device('cpu')
     print(f'[device: {device} is ready]')
+    return device
 
 
 if __name__ == "__main__":
@@ -67,7 +68,6 @@ if __name__ == "__main__":
             num_classes=data.num_classes,
             dtype=dtype,
             device=device)
-    print(model.device)
     model.to(dtype)
     metrics = {
         "train-accs": [],
@@ -89,7 +89,6 @@ if __name__ == "__main__":
     iteration = 0
     while iteration < args.num_epochs:
         for X,y in dataloader:
-            print(model.device)
             optimizer.zero_grad()
             model.zero_grad()
             outs = model(X)
