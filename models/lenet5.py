@@ -33,7 +33,7 @@ class LeNet5(ClassificationModelBase):
         self.initialize()
 
     def forward(self,x):
-        x = x.to(self.dtype)
+        x = x.to(self.dtype).to(self.device)
         for module in self.module_list:
             for m in module.modules():
                 x = m(x)

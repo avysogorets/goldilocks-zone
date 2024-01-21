@@ -91,8 +91,6 @@ if __name__ == "__main__":
         for X,y in dataloader:
             optimizer.zero_grad()
             model.zero_grad()
-            X = X.to(model.device)
-            X = X.to(model.dtype)
             y = y.to(model.device)
             outs = model(X)
             loss = F.cross_entropy(outs, y)
