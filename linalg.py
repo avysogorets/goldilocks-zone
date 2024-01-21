@@ -203,7 +203,7 @@ def eigenthings(
         return gpu_compat_loss
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=128)
     use_gpu = True if model.device.type == 'cuda:0' else False
-    print(use_gpu)
+    print(model.device.type)
     vals, vects = compute_hessian_eigenthings(
             model,
             dataloader,
