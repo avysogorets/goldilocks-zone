@@ -60,7 +60,6 @@ if __name__ == "__main__":
     data = DataFactory(
             dataset_name=args.dataset,
             path=args.path,
-            device=device,
             to_transform=False)
     model = ModelFactory(
             model_name=args.network,
