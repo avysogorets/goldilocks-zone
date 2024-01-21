@@ -22,6 +22,8 @@ class CIFAR10(ClassificationDataBase):
                 train=True,
                 download=True,
                 transform=train_transform)
+        train_dataset.data = train_dataset.data.to(device)
+        train_dataset.targets = train_dataset.targets.to(device)
         dev_transform = torchvision.transforms.Compose([
                 torchvision.transforms.ToTensor(),
                 torchvision.transforms.Normalize(
@@ -31,7 +33,9 @@ class CIFAR10(ClassificationDataBase):
                 train=False,
                 download=True,
                 transform=dev_transform)
-        self.datasets = {'train': train_dataset.to(device),
-                        'dev': dev_dataset.to(device)}
+        dev_dataset.data = dev_dataset.data.to(device)
+        dev_dataset.targets = dev_dataset.targets.to(device)
+        self.datasets = {'train': train_dataset,
+                        'dev': dev_dataset}
         self.num_classes = 10
         self.in_shape = (3,32,32)

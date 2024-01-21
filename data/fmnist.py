@@ -16,6 +16,8 @@ class FMNIST(ClassificationDataBase):
                 train=True,
                 download=True,
                 transform=train_transform)
+        train_dataset.data = train_dataset.data.to(device)
+        train_dataset.targets = train_dataset.targets.to(device)
         dev_transform = torchvision.transforms.Compose([
                 torchvision.transforms.ToTensor(),
                 torchvision.transforms.Normalize((0.5,), (0.5,))])
@@ -23,6 +25,8 @@ class FMNIST(ClassificationDataBase):
                 train=False,
                 download=True,
                 transform=dev_transform)
+        dev_dataset.data = dev_dataset.data.to(device)
+        dev_dataset.targets = dev_dataset.targets.to(device)
         self.datasets = {'train': train_dataset.to(device),
                         'dev': dev_dataset.to(device)}
         self.num_classes = 10
