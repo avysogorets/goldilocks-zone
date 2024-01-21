@@ -68,7 +68,6 @@ if __name__ == "__main__":
             num_classes=data.num_classes,
             dtype=dtype,
             device=device)
-    model.to(dtype)
     metrics = {
         "train-accs": [],
         "test-accs": [],
@@ -98,6 +97,7 @@ if __name__ == "__main__":
             g = get_current_gradients(model).detach().squeeze()
             optimizer.step()
             if iteration % args.log_every_k == 0:
+                model.eval()
                 y_pred = outs.detach().argmax(dim=-1)
                 train_acc = torch.mean((y_pred==y).float()).item()
                 metrics["train-accs"].append(train_acc)
@@ -117,6 +117,7 @@ if __name__ == "__main__":
                 metrics["angles-ww"].append(cos_vec_vec(w, init))
                 zero_logits = torch.sum(outs==0)/outs.numel()
                 metrics["zero-logits"].append(zero_logits.item())
+                model.train()
             iteration+=1
 
     f = open(os.path.join(args.output_dir, fileid+'.json'), 'w')
