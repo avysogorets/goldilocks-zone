@@ -199,7 +199,7 @@ def eigenthings(
     def loss_wrapper(loss_fn):
         def gpu_compat_loss(outs, y_true, **kwargs):
             y_true = y_true.to(outs.device)
-            return loss_fn(y_true)
+            return loss_fn(outs, y_true)
         return gpu_compat_loss
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=128)
     use_gpu = True if model.device.type == 'cuda:0' else False
