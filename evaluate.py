@@ -23,7 +23,6 @@ def compute_loss_acc(
     model.eval()
     with torch.no_grad():
         for X, y in val_dataloader:
-            X = X.to(model.device).double()
             y = y.to(model.device)
             outs = model(X)
             fs.append(torch.argmax(outs, dim=-1).squeeze())
