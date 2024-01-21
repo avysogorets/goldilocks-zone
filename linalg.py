@@ -196,18 +196,12 @@ def eigenthings(
     
     """ Computes num_things eigenvalues and eigenvectors.
     """
-    def loss_wrapper(loss_fn):
-        def gpu_compat_loss(outs, y_true, **kwargs):
-            y_true = y_true.to(outs.device)
-            return loss_fn(outs, y_true)
-        return gpu_compat_loss
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=128)
     use_gpu = True if model.device.type == 'cuda' else False
     vals, vects = compute_hessian_eigenthings(
             model,
             dataloader,
             loss,
-            #loss_wrapper(loss),
             num_things,
             use_gpu=use_gpu)
     return vals, vects

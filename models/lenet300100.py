@@ -12,10 +12,12 @@ class LeNet300100(ClassificationModelBase):
                 temperature=1.,
                 dtype=torch.float32,
                 **kwargs):
-        super().__init__(device, activation)
-        self.in_shape = in_shape
-        self.dtype = dtype
-        self.temperature = temperature
+        super().__init__(
+                device=device,
+                dtype=dtype,
+                in_shape=in_shape,
+                temperature=temperature,
+                activation=activation)
         in_neurons = 1
         for i in in_shape:
                 in_neurons*=i

@@ -5,9 +5,12 @@ import math
 
 class ClassificationModelBase(torch.nn.Module):
 
-    def __init__(self, device, activation='ReLU'):
+    def __init__(self, device, in_shape, dtype, temperature, activation='ReLU'):
         super().__init__()
         self.device = device
+        self.in_shape = in_shape
+        self.dtype = dtype
+        self.temperature = temperature
         if activation == 'ReLU':
             self.activation = torch.nn.ReLU
         elif activation == 'Tanh':
