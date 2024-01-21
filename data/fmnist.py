@@ -3,7 +3,8 @@ import torchvision
 
 
 class FMNIST(ClassificationDataBase):
-    def __init__(self, path, to_transform=False, **kwargs):
+    def __init__(self, path, device, to_transform=False, **kwargs):
+        super().__init__()
         optional_transform = [torchvision.transforms.RandomRotation(degrees=4)]
         train_transform = [
                 torchvision.transforms.ToTensor(),
@@ -22,7 +23,7 @@ class FMNIST(ClassificationDataBase):
                 train=False,
                 download=True,
                 transform=dev_transform)
-        self.datasets = {'train': train_dataset,
-                        'dev': dev_dataset}
+        self.datasets = {'train': train_dataset.to(device),
+                        'dev': dev_dataset.to(device)}
         self.num_classes = 10
         self.in_shape = (1,28,28)

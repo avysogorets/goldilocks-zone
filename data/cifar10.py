@@ -3,7 +3,8 @@ import torchvision
 
 
 class CIFAR10(ClassificationDataBase):
-    def __init__(self, path, to_transform=True, **kwargs):
+    def __init__(self, path, device, to_transform=True, **kwargs):
+        super().__init__()
         optional_transform = [
                 torchvision.transforms.RandomHorizontalFlip(p=0.5),
                 torchvision.transforms.RandomAffine(
@@ -30,7 +31,7 @@ class CIFAR10(ClassificationDataBase):
                 train=False,
                 download=True,
                 transform=dev_transform)
-        self.datasets = {'train': train_dataset,
-                        'dev': dev_dataset}
+        self.datasets = {'train': train_dataset.to(device),
+                        'dev': dev_dataset.to(device)}
         self.num_classes = 10
         self.in_shape = (3,32,32)
