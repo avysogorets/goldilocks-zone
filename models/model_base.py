@@ -5,12 +5,18 @@ import math
 
 class ClassificationModelBase(torch.nn.Module):
 
-    def __init__(self, device, in_shape, dtype, temperature, activation='ReLU'):
+    def __init__(self,
+                in_shape,
+                device=torch.device('cpu'),
+                dtype=torch.float32,
+                temperature=1.,
+                activation='ReLU'):
         super().__init__()
         self.device = device
         self.in_shape = in_shape
         self.dtype = dtype
         self.temperature = temperature
+        self.module_list = None
         if activation == 'ReLU':
             self.activation = torch.nn.ReLU
         elif activation == 'Tanh':
@@ -36,7 +42,15 @@ class ClassificationModelBase(torch.nn.Module):
                 if hasattr(m, 'bias') and m.bias is not None:
                     torch.nn.init.zeros_(m.bias)
         self.to(self.device)
-        self.to(self.dtype)        
+        self.to(self.dtype)  
+
+    def forward(self, x):
+        x = x.to(self.dtype).to(self.device)
+        for module in self.module_list:
+            for m in module.modules():
+                x = m(x)
+        x = x/self.temperature
+        return x      
 
     def predict(self, dataset, batch_size=32):
 

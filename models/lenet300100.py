@@ -5,19 +5,12 @@ import torch
 class LeNet300100(ClassificationModelBase):
 
     def __init__(self,
-                device,
                 in_shape,
                 num_classes,
-                activation='ReLU',
-                temperature=1.,
-                dtype=torch.float32,
                 **kwargs):
         super().__init__(
-                device=device,
-                dtype=dtype,
                 in_shape=in_shape,
-                temperature=temperature,
-                activation=activation)
+                **kwargs)
         in_neurons = 1
         for i in in_shape:
                 in_neurons*=i
@@ -29,11 +22,3 @@ class LeNet300100(ClassificationModelBase):
                 self.activation(),
                 torch.nn.Linear(100, num_classes, bias=False)])
         self.initialize()
-        
-    def forward(self, x):
-        x = x.to(self.dtype).to(self.device)
-        for module in self.module_list:
-            for m in module.modules():
-                x = m(x)
-        x = x/self.temperature
-        return x

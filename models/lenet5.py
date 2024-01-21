@@ -5,19 +5,12 @@ import torch
 class LeNet5(ClassificationModelBase):
 
     def __init__(self,
-                device,
                 in_shape,
                 num_classes,
-                activation='ReLU',
-                temperature=1.,
-                dtype=torch.float32,
                 **kwargs):
         super().__init__(
-                device=device,
-                dtype=dtype,
                 in_shape=in_shape,
-                temperature=temperature,
-                activation=activation)
+                **kwargs)
         num_at_flat = int(16*(((in_shape[1]-4)/2-4)/2)**2)
         self.module_list = torch.nn.ModuleList([
             torch.nn.Conv2d(in_shape[0], 6, padding=0, kernel_size=(5,5), stride=1, bias=False),
@@ -33,11 +26,3 @@ class LeNet5(ClassificationModelBase):
             self.activation(),
             torch.nn.Linear(84, num_classes, bias=False)])
         self.initialize()
-
-    def forward(self,x):
-        x = x.to(self.dtype).to(self.device)
-        for module in self.module_list:
-            for m in module.modules():
-                x = m(x)
-        x = x/self.temperature
-        return x
