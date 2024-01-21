@@ -38,7 +38,7 @@ class ClassificationModelBase(torch.nn.Module):
         for m in self.modules():
             if isinstance(m, torch.nn.Linear) or isinstance(m, torch.nn.Conv2d):
                 self.num_layers += 1
-                torch.nn.init.xavier_normal_(m.weight, gain=math.sqrt(2))
+                torch.nn.init.kaiming_normal_(m.weight)
                 if hasattr(m, 'bias') and m.bias is not None:
                     torch.nn.init.zeros_(m.bias)
         self.to(self.device)
