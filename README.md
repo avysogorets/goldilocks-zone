@@ -1,10 +1,6 @@
 # Code to reproduce experiments from the paper
 ## Quick setup
-To clone this repo to your local machine, type this command from your preferred directory:
-```
-git clone https://github.com/avysogorets/preferans-solver.git
-```
-Then, follow these steps in your terminal window to set up virtual environment:
+Follow these steps in your terminal window to set up virtual environment:
 #### MacOS & Linux
 ```
 python -m pip install --user --upgrade pip # install pip
