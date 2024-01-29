@@ -280,7 +280,7 @@ def get_Jacobian(
 
 
 def Gamma(
-            P:torch.Tensor) -> float:
+            P: torch.Tensor) -> float:
     
     """ Computes Gamma(P) for a matrix of softmax outputs.
         - P (S, K): matrix of softmax outputs. 
@@ -301,7 +301,7 @@ def EG_curvature(
             d: int,
             P: torch.Tensor):
     
-    """ Computes positive curvature of the exected G_term per Eq. 9.
+    """ Computes positive curvature of the expected G_term per Eq. 9.
         - var_E: estimated variance of logit gradients
         - var_C: estimated variance of logit gradient means
         - d: dimension of the subspace
