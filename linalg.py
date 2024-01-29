@@ -35,7 +35,7 @@ def get_random_ortho_matrix(
             d: int,
             device: torch.device) -> torch.Tensor:
     
-    """ Computes a random orthonornal (D, d) orthonormal matrix.
+    """ Computes a random (D, d) orthonormal matrix.
         Adapted from https://github.com/jeffiar/cs229-final-project
     """
     M = torch.zeros(D, d, device=device)
@@ -53,7 +53,7 @@ def sparse_vector(
             D: int,
             n: int) -> torch.Tensor:
     
-    """ Computes a D dimensional sparse vectors with n non-zero entries.
+    """ Computes a D dimensional sparse vector with n non-zero entries.
         Adapted from https://github.com/jeffiar/cs229-final-project
     """
     vec = torch.zeros(D).float()
