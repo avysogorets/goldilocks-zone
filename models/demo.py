@@ -1,4 +1,4 @@
-from models.model_base import ClassificationModelBase
+from .model_base import ClassificationModelBase
 import torch
 
 

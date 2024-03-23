@@ -1,5 +1,5 @@
-from data.data_base import ClassificationDataBase
-from data.utils import TorchDataset
+from .data_base import ClassificationDataBase
+from .utils import TorchDataset
 import torch
 import os
 

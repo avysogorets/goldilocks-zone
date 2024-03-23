@@ -1,4 +1,4 @@
-from data.data_base import ClassificationDataBase
+from .data_base import ClassificationDataBase
 import torchvision
 
 
