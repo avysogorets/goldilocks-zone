@@ -1,6 +1,7 @@
 from torch.utils.data import DataLoader, Dataset
 from torch.distributions import Categorical
 from models.model_base import ClassificationModelBase
+from typing import Tuple
 import torch.nn.functional as F
 import torch
 import numpy as np
@@ -8,7 +9,7 @@ import numpy as np
 
 def compute_loss_acc(
             dataset: Dataset,
-            model: ClassificationModelBase) -> (float, float):
+            model: ClassificationModelBase) -> Tuple[float, float]:
     
     """ Computes loss and accuracy of the model on dataset.
     """

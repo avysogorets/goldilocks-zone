@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Tuple
 from torch.utils.data import Dataset, DataLoader
 from models.model_base import ClassificationModelBase
 from hessian_eigenthings import compute_hessian_eigenthings
@@ -69,7 +69,7 @@ def goldilocks(
             dataset: Dataset,
             dim: int,
             device: torch.device,
-            layer: Union[int, None] = None) -> (float, float):
+            layer: Union[int, None] = None) -> Tuple[float, float]:
     if layer is None:
         w = get_trainable_parameters(model).to(device)
     else:
@@ -102,7 +102,7 @@ def eigenvvs(
             top_k: int,
             is_subspace: bool = False,
             R: Union[torch.Tensor, None] = None,
-            layer: Union[int, None] = None) -> (torch.Tensor, torch.Tensor):
+            layer: Union[int, None] = None) -> Tuple[torch.Tensor, torch.Tensor]:
     
     """ Computes top_k eigenvalues and eigenvectors of the model
         on train_dataset (top_k = -1 means all).
@@ -192,7 +192,7 @@ def eigenthings(
             model: ClassificationModelBase,
             loss: callable,
             dataset: Dataset,
-            num_things: int) -> (torch.Tensor, torch.Tensor):
+            num_things: int) -> Tuple[torch.Tensor, torch.Tensor]:
     
     """ Computes num_things eigenvalues and eigenvectors.
     """
