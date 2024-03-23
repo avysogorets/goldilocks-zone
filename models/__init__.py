@@ -1,8 +1,8 @@
-from models.utils import get_all_subclasses
-from models.model_base import ClassificationModelBase
-from models.lenet300100 import LeNet300100
-from models.lenet5 import LeNet5
-from models.demo import Demo
+from .utils import get_all_subclasses
+from .model_base import ClassificationModelBase
+from .lenet300100 import LeNet300100
+from .lenet5 import LeNet5
+from .demo import Demo
 
 
 def ModelFactory(model_name, **kwargs):

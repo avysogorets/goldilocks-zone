@@ -1,8 +1,8 @@
-from data.utils import get_all_subclasses
-from data.data_base import ClassificationDataBase
-from data.fmnist import FMNIST
-from data.cifar10 import CIFAR10
-from data.circles import Circles
+from .utils import get_all_subclasses
+from .data_base import ClassificationDataBase
+from .fmnist import FMNIST
+from .cifar10 import CIFAR10
+from .circles import Circles
 
 
 def DataFactory(dataset_name, **kwargs):
