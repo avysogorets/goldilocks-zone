@@ -1,13 +1,13 @@
-from typing import Union, Tuple
-from torch.utils.data import Dataset, DataLoader
-from models.model_base import ClassificationModelBase
-from hessian_eigenthings import compute_hessian_eigenthings
-from models.utils import get_trainable_parameters, \
+from .models.model_base import ClassificationModelBase
+from .models.utils import get_current_gradients
+from .models.utils import get_trainable_parameters, \
     get_trainable_parameters_in_layer, \
     set_trainable_parameters, \
     set_trainable_parameters_in_layer, \
     flip_parameters_to_tensors
-from models.utils import get_current_gradients
+from typing import Union, Tuple
+from torch.utils.data import Dataset, DataLoader
+from hessian_eigenthings import compute_hessian_eigenthings
 from copy import deepcopy
 import numpy as np
 import torch

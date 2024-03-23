@@ -1,6 +1,6 @@
+from .models.model_base import ClassificationModelBase
 from torch.utils.data import DataLoader, Dataset
 from torch.distributions import Categorical
-from models.model_base import ClassificationModelBase
 from typing import Tuple
 import torch.nn.functional as F
 import torch

@@ -1,5 +1,5 @@
-from collections import OrderedDict
 from .model_base import ClassificationModelBase
+from collections import OrderedDict
 import torch
 
 

@@ -1,4 +1,4 @@
-from linalg import cos_vec_vec
+from .linalg import cos_vec_vec
 from tqdm.auto import tqdm
 from typing import Iterable
 import torch
