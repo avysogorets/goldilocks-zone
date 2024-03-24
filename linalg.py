@@ -207,19 +207,6 @@ def eigenthings(
     return vals, vects
 
 
-def Gamma(
-            p: torch.Tensor) -> float:
-    
-    """ Computes positive curvature of diag(p)-pp^T.
-        - p (K): softmax output
-    """
-    p = p.reshape(-1,1)
-    G = torch.diag(p.reshape(-1))-p@p.T
-    trace = torch.trace(G).item()
-    norm = torch.linalg.norm(G, 'fro').item()
-    return (norm/trace)**2
-
-
 def _get_G_term(
             J: torch.Tensor,
             p: torch.Tensor) -> torch.Tensor:

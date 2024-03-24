@@ -8,7 +8,7 @@ class FMNIST(ClassificationDataBase):
         optional_transform = [torchvision.transforms.RandomRotation(degrees=4)]
         train_transform = [
                 torchvision.transforms.ToTensor(),
-                torchvision.transforms.Normalize((0.5,), (0.5,))]
+                torchvision.transforms.Normalize((0.2860,), (0.3530,))]
         if to_transform:
                 train_transform = optional_transform+train_transform
         train_transform = torchvision.transforms.Compose(train_transform)
@@ -18,7 +18,7 @@ class FMNIST(ClassificationDataBase):
                 transform=train_transform)
         dev_transform = torchvision.transforms.Compose([
                 torchvision.transforms.ToTensor(),
-                torchvision.transforms.Normalize((0.5,), (0.5,))])
+                torchvision.transforms.Normalize((0.2860,), (0.3530,))])
         dev_dataset = torchvision.datasets.FashionMNIST(path,
                 train=False,
                 download=True,
