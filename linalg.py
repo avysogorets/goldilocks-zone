@@ -302,3 +302,67 @@ def EG_curvature(
     res = numer / denom
     return res
 
+
+def hessian_vector_product(
+            model: ClassificationModelBase,
+            loss: torch.Tensor,
+            vec: torch.Tensor) -> torch.Tensor:
+    
+    """ Computes hessian-vector product H @ vec wrt to 
+        model parameters given a scalar loss tensor.
+    """
+    grad = torch.autograd.grad(
+            loss, 
+            model.parameters(), 
+            create_graph=True, 
+            allow_unused=True)
+    grad = torch.cat([g.reshape(-1) for g in grad if g is not None])
+    g = grad @ vec
+    hvp = torch.autograd.grad(g, model.parameters(), allow_unused=True)
+    hvp = torch.cat([g.reshape(-1) for g in hvp if g is not None])
+    return hvp.detach()
+
+
+def hutch_tr_H(
+            model: ClassificationModelBase,
+            train_X: torch.Tensor,
+            train_y: torch.LongTensor,
+            maxiter: int = 100) -> float:
+    
+    """ Computes trace of the model Hessian computed on data
+        (train_X, train_y) using Hutchinson's stochastic
+        approximation method using maxiter iterations.
+    """
+    w = get_trainable_parameters(model)
+    traces = []
+    for _ in range(maxiter):
+        model.zero_grad()
+        vec = torch.randint_like(w, high=2).squeeze()
+        vec[vec == 0] = -1
+        loss = F.cross_entropy(model(train_X), train_y)
+        t = vec@hessian_vector_product(model, loss, vec)
+        traces.append(t.item())
+    return np.mean(traces).item()
+  
+
+def hutch_fr_H(
+            model: ClassificationModelBase,
+            train_X: torch.Tensor,
+            train_y: torch.LongTensor,
+            maxiter: int = 100) -> float:
+    
+    """ Computes Frobenius norm of the model Hessian computed
+        on data (train_X, train_y) using Hutchinson's stochastic
+        approximation method using maxiter iterations.
+    """
+    w = get_trainable_parameters(model)
+    frobs = []
+    for _ in range(maxiter):
+        model.zero_grad()
+        vec = torch.randint_like(w, high=2).squeeze()
+        vec[vec == 0] = -1
+        loss = F.cross_entropy(model(train_X), train_y)
+        hvp = hessian_vector_product(model, loss, vec).squeeze()
+        frobs.append(hvp@hvp)
+    return np.sqrt(np.mean(frobs)).item()
+
