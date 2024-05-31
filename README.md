@@ -24,7 +24,7 @@ author = {Vysogorets, Artem and Dawid, Anna and Kempe, Julia},
 booktitle = {Proceedings of the 41st International Conference on Machine Learning},
 pages = {1--15},
 year = {2024},
-series = 	 {Proceedings of Machine Learning Research},
+series = {Proceedings of Machine Learning Research},
 month = {21--27 Jul},
 publisher = {PMLR}}
 ```
